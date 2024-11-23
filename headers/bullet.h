@@ -8,7 +8,7 @@
 typedef struct {
     int x, y;
     int active; // 1 si actif, 0 sinon
-} Bullet;
+} Bullet; //structure d'un tir
 
 extern Bullet bullets[NUM_BULLETS];
 

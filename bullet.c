@@ -1,8 +1,20 @@
-#include "bullet.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bullet.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: arocca <arocca@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/23 14:02:15 by hadia             #+#    #+#             */
+/*   Updated: 2024/11/23 18:04:30 by arocca           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-Bullet bullets[NUM_BULLETS];
+#include "bullet.h" 
 
-void init_bullets() 
+Bullet bullets[NUM_BULLETS];//constante nombre de tir max
+
+void init_bullets()
 {
 
     int i = 0;
@@ -10,7 +22,7 @@ void init_bullets()
         bullets[i].active = 0;
         i++;
     }
-}
+} //les tirs sont inactifs au depart
 
 void fire_bullet() 
 {
@@ -24,8 +36,9 @@ void fire_bullet()
         }
         i++;
     }
-}
+}//fait apparaitre les tirs a la position du player +1, soit juste devant lui
 
+//fonction qui fait avancer les tirs, mais les tirs ne sortent pas de l'ecran
 void move_bullets() 
 {
     int i = 0;
@@ -40,12 +53,13 @@ void move_bullets()
     }
 }
 
-void display_bullets() 
+//fonction pour l'apparance des tirs
+void display_bullets()
 {
     int i = 0;
     while (i < NUM_BULLETS) {
         if (bullets[i].active) {
-            mvaddch(bullets[i].y, bullets[i].x, '|');
+            mvaddch(bullets[i].y, bullets[i].x, '-');
         }
         i++;
     }

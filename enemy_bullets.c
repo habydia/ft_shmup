@@ -11,14 +11,10 @@ void init_enemy_bullets() {
 }
 
 // Un ennemi tire un projectile
-void fire_enemy_bullet(int enemy_index) {
-    for (int i = 0; i < NUM_ENEMY_BULLETS; i++) {
-        if (!enemy_bullets[i].active) {
-            enemy_bullets[i].x = enemy_index; // Position X de l'ennemi
-            enemy_bullets[i].y = rand() % LINES; // Position Y aléatoire de l'ennemi
+void fire_enemy_bullet(int i) {
+	//(void)enemy_index;
+    if (!enemy_bullets[i].active) {
             enemy_bullets[i].active = 1;
-            break;
-        }
     }
 }
 
@@ -26,29 +22,21 @@ void fire_enemy_bullet(int enemy_index) {
 void move_enemy_bullets() {
     for (int i = 0; i < NUM_ENEMY_BULLETS; i++) {
         if (enemy_bullets[i].active) {
-            enemy_bullets[i].x--;
+            enemy_bullets[i].x -= 2;
             if (enemy_bullets[i].x < 0) {
                 enemy_bullets[i].active = 0; // Désactiver si hors écran
             }
         }
+		else {
+			enemy_bullets[i].x = enemies[i].x - 1; // Position X de l'ennemi
+        	enemy_bullets[i].y = enemies[i].y; // Position Y aléatoire de l'ennemi
+		}
     }
 }
 
 // Affichage des tirs ennemis
 void display_enemy_bullets() {
     for (int i = 0; i < NUM_ENEMY_BULLETS; i++) {
-        if (enemy_bullets[i].active) {
-            mvaddch(enemy_bullets[i].y, enemy_bullets[i].x, '*');
-        }
+		mvaddch(enemy_bullets[i].y, enemy_bullets[i].x, '*');
     }
 }
-
-// Vérification des collisions des tirs ennemis
-void check_enemy_bullet_collisions(int player_x, int player_y, int *game_over) {
-    for (int i = 0; i < NUM_ENEMY_BULLETS; i++) {
-        if (enemy_bullets[i].active && enemy_bullets[i].x == player_x && enemy_bullets[i].y == player_y) {
-            *game_over = 1; // Le joueur est touché, fin de partie
-        }
-    }
-}
-
