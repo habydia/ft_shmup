@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -lncurses
-SRC = main.c player.c bullet.c enemy.c  game.c enemy_bullets.c decors.c
+SRC = main.c player.c bullet.c enemy.c  game.c enemy_bullets.c decors.c menu.c
 HEADERS = headers/
 OBJ_D = obj
 DEP_D = dep

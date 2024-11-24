@@ -9,6 +9,7 @@
 
 void init_game();
 int is_game_over();
+int is_wone();
 void handle_input(int ch);
 void update_game();
 void draw_game();

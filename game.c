@@ -3,6 +3,7 @@
 int score = 0;
 int live = 3;
 int game_over = 0;
+int you_win = 0;
 
 void init_game() {
     init_enemies();
@@ -14,7 +15,9 @@ void init_game() {
 int is_game_over() {
     return game_over;
 }
-
+int	is_wone(){
+	return you_win;
+}
 void check_collisions() {
     int i = 0;
     while (i < NUM_ENEMIES) {
@@ -63,7 +66,7 @@ void update_game() {
    	move_enemy_bullets(); //fait apparaitre les tirs enemies
     check_collisions();
 	if (live <= 0) game_over = 1;
-
+	else if (score >= 100) you_win = 1;
     // Faire apparaître un ennemi toutes les X itérations
     spawn_counter++;
     if (spawn_counter >= 20) { // limite le nombre d'apparition d'ennemis a 20
